@@ -15,11 +15,11 @@ Show one specific item.
 ## cart
 
 Shows shopping cart. Allows purchase.
- 
+
  ## history
- 
+
  Shows all items bought by user.
- 
+
  ## admin:Product add/edit
  Adds new (or edits existing) product. Possibly **scrapes** meta-data from Amazon.
 
@@ -31,12 +31,13 @@ Overview of types. I prefixed lines with "?" if I'm not sure.
 
 ## products
 
-    create table product(
+    create table products(
         id int not null auto_increment,
         cost decimal(18, 2) not null,
+        name varchar(128),
         image varchar(256),
         description text,
-        
+
         primary key(id)
     );
 
@@ -44,9 +45,8 @@ Overview of types. I prefixed lines with "?" if I'm not sure.
 
     create table users(
         id int not null auto_increment,
-        username varchar(32) not null,
-        ? money decimal(18,2),
-        
+        username varchar(64) not null,
+        money decimal(18,2),
         primary key(id)
     );
 
@@ -58,7 +58,7 @@ Overview of types. I prefixed lines with "?" if I'm not sure.
         product_id int not null,
         product_cost decimal(18, 2),
         ? product_quantity int not null,
-        
+
         ? primary key(id)
     );
 
@@ -70,6 +70,6 @@ List of all items user has purchased
         id int not null auto_increment,
         product_id int not null,
         product_quantity int not null,
-        
+
         primary key(id)
     );
