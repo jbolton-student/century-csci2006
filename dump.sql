@@ -16,6 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cost` decimal(18,2) NOT NULL,
+  `name` varchar(128) DEFAULT NULL,
+  `image` varchar(256) DEFAULT NULL,
+  `description` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `products`
+--
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,19.99,'Logitech M510 mouse','https://images-na.ssl-images-amazon.com/images/I/41GjoODyC0L._AC_US160_.jpg','Basic wireless mouse'),(2,6.95,'Ballcap Hat','https://images-na.ssl-images-amazon.com/images/I/41sy4v0RaoL._AC_US200_.jpg','Plain without logo.'),(5,2.99,'test','description','https://images-na.ssl-images-amazon.com/images/I/41GjoODyC0L._AC_US160_.jpg');
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -50,4 +77,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-09  9:14:41
+-- Dump completed on 2017-04-09 10:21:01
