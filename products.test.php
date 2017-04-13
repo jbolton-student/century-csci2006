@@ -9,9 +9,11 @@ function list_products($pdo) {
     $statement = $pdo->prepare($sql);
     $statement->execute();
 
-    // todo: Not sure how to iterate all items if using classes, only when  using associative array
-    $p = new Product($statement->fetch());
-    print($p);
+    $data = $statement->fetchAll();
+    foreach($data as $i => $row) {
+        $p = new Product($row);
+        echo($p);
+    }
 }
 
 function add_product($pdo, $name, $cost, $image, $description) {
@@ -45,11 +47,15 @@ function product_exists($pdo, $name) {
 function test() {
     $pdo = db_connect();
     try {
+        echo("<h2>list</h2>");
         list_products($pdo);
 
+
+        echo("<h2>product_exists</h2>");
         product_exists($pdo, "Ballcap Hat");
         product_exists($pdo, "fake");
 
+        echo("<h2>add_product</h2><br>");
         add_product($pdo, "test", 2.99, "description", "https://images-na.ssl-images-amazon.com/images/I/41GjoODyC0L._AC_US160_.jpg");
 
     } catch (PDOException $e) {

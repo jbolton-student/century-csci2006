@@ -56,7 +56,7 @@
         }
 
         public function __toString() {
-            $productInfo = "Product: " . $this->getID() . "<br>" . $this->getName() . "<br>" . $this->getCost() . "<br>" . $this->getDescription() . "<br>" . $this->getImage();
+            $productInfo = "<br>Product: " . $this->getID() . "<br>" . $this->getName() . "<br>" . $this->getCost() . "<br>" . $this->getDescription() . "<br>" . $this->getImage() . "<br>";
             return $productInfo;
 
         }
