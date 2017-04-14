@@ -2,7 +2,8 @@
 
 require('config.php');
 
-function db_connect() {
+function DBConnect() {
+    $pdo = null;
     try {
         $connString = "mysql:host=" . DBHOST . ";dbname=" . DBNAME;
         $user = DBUSER;
@@ -16,8 +17,20 @@ function db_connect() {
     }
 }
 
-function validate_user($user, $pass) {
-    die("NYI");
+function validateUser($user, $pass) {
+    $pdo = DBConnect();
+    $sql = "select * from users where username=:user
+        and password=:pass";
+
+    $statement = $pdo->prepare($sql);
+    $statement->bindValue(":user", $user);
+    $statement->bindValue(":pass", $pass);
+
+    $statement->execute();
+    if($statement->rowCount() > 0) {
+        return True;
+    }
+    return False;
 }
 
 ?>
