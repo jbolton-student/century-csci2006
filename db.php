@@ -16,4 +16,8 @@ function db_connect() {
     }
 }
 
+function validate_user($user, $pass) {
+    die("NYI");
+}
+
 ?>
