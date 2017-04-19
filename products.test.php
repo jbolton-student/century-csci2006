@@ -74,7 +74,6 @@ function test() {
         echo("<h2>list</h2>");
         list_products($pdo);
 
-
         echo("<h2>product_exists</h2>");
         product_exists($pdo, "Ballcap Hat");
         product_exists($pdo, "fake");
