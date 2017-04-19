@@ -1,36 +1,38 @@
 <?php
-    session_start();
-    require_once('dab.php');
-    if (isset($_POST['username']) && isset($_POST['password']))
-    {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+session_start();
 
-        if( validateUser($username, $password) )
-        {
-            $_SESSION['valid_user'] = $username;
+require_once('db.php');
+require_once('common.php');
 
-        }
+$error = false;
+loginUser();
+
+if(isLoggedIn()) {
+    redirect("home.php");
+} else {
+    if(isset($_POST['username'])
+        || isset($_POST['password'])
+    ) {
+        $error = true;
     }
+}
+
+// otherwise show login form
+
 ?>
 
 <html>
 <body>
 <h1> Home </h1>
 <?php
-    if (isset($_SESSION['valid_user']))
-    {
-        echo 'You are logged in as: ' . $_SESSION['valid_user'] . '<br>';
-        echo '<a href="logout.php"> Log out </a><br>';
-    }
-    else
-    {
+
+if($error) echo "<p>Error: Bad username or password</p>";
 
 ?>
     <form method="post" action="login.php">
         <table>
         <tr>
-            <td>User ID: </td>
+            <td>Username: </td>
             <td><input type="text" name="username"></td>
         </tr>
         <tr>
@@ -41,15 +43,4 @@
         <input type="submit" value="Log in"></td></tr>
         </table>
     </form>
-<?php
-    }
-?>
-
-
-
-
-
-
-
-
-
+</body></html>

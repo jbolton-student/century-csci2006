@@ -1,6 +1,6 @@
 <?php
 
-require('config.php');
+require_once('config.php');
 
 function DBConnect() {
     $pdo = null;
@@ -18,6 +18,7 @@ function DBConnect() {
 }
 
 function validateUser($user, $pass) {
+    // check if user/pass are right
     $pdo = DBConnect();
     $sql = "select * from users where username=:user
         and password=:pass";
@@ -27,10 +28,26 @@ function validateUser($user, $pass) {
     $statement->bindValue(":pass", $pass);
 
     $statement->execute();
-    if($statement->rowCount() > 0) {
+
+    if($statement->rowCount() == 1) {
         return True;
     }
     return False;
+}
+
+function loginUser() {
+    // Login if possible
+    // if POST, attempt to login
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+      $username = $_POST['username'];
+      $password = $_POST['password'];
+
+      if(validateUser($username, $password) ) {
+          $_SESSION['valid_user'] = $username;
+      }
+    } else {
+        return;
+    }
 }
 
 ?>
