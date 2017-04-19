@@ -38,13 +38,15 @@ function validateUser($user, $pass) {
 function loginUser() {
     // Login if possible
     // if POST, attempt to login
-    if (isset($_POST['username']) && isset($_POST['password'])) {
-      $username = $_POST['username'];
-      $password = $_POST['password'];
+    if (isset($_POST['username'])
+        && isset($_POST['password'])
+    ) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
-      if(validateUser($username, $password) ) {
-          $_SESSION['valid_user'] = $username;
-      }
+        if(validateUser($username, $password) ) {
+            $_SESSION['valid_user'] = $username;
+        }
     } else {
         return;
     }

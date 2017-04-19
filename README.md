@@ -1,31 +1,38 @@
+# How to dump mysql
+
+    $ mysqldump -u root project > "D:\www\xampp\century-csci2006\dump.sql"
+
 # PHP project overview
 
 Project Overview, not everything is required.
 
 # Pages
 
-## product:search
+## product_search.php?name=Foo
 
 Displays multiple results based on names or categories.
 
-## product:show id
+## product_show.php?id=123
 
 Show one specific item.
 
-## cart
+## cart_show.php
 
 Shows shopping cart. Allows purchase.
 
- ## history
+ ## history_show.php
 
  Shows all items bought by user.
 
- ## admin:Product add/edit
+ ## /admin/product_update.php
+
  Adds new (or edits existing) product. Possibly **scrapes** meta-data from Amazon.
 
  form: description, price, image, category
 
 # Tables
+
+See comments in files like `Products.test` for updated table definitions.
 
 Overview of types. I prefixed lines with "?" if I'm not sure.
 
