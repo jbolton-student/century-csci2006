@@ -1,10 +1,11 @@
 <?php
+session_start();
+
 require_once('Item.class.php');
 require_once('Cart.class.php');
 
     todo: finish...
 
-session_start();
 $cart;
 
 if(!isset($_SESSION['shoppingCart'])) {

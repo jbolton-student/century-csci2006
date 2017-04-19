@@ -3,7 +3,7 @@
 require('db.php');
 require('products.class.php');
 
-function list_products($pdo) {
+function listProducts($pdo) {
     // using classes
     $sql = "select * from products";
     $statement = $pdo->prepare($sql);
@@ -16,8 +16,8 @@ function list_products($pdo) {
     }
 }
 
-function add_product($pdo, $name, $cost, $image, $description) {
-    if(product_exists($pdo, $name)) {
+function addProduct($pdo, $name, $cost, $image, $description) {
+    if(productExists($pdo, $name)) {
         return;
     }
 
@@ -31,7 +31,7 @@ function add_product($pdo, $name, $cost, $image, $description) {
     $statement->execute();
 }
 
-function product_exists($pdo, $name) {
+function productExists($pdo, $name) {
     $sql = "select * from products where name=:name";
     $statement = $pdo->prepare($sql);
     $statement->bindValue(":name", $name);
@@ -44,7 +44,7 @@ function product_exists($pdo, $name) {
     }
 }
 
-function get_product_by_name($pdo, $name) {
+function getProductByName($pdo, $name) {
     $item = null;
     $sql = "select * from products where name=:name";
     $statement = $pdo->prepare($sql);
@@ -68,18 +68,18 @@ function test() {
     try {
 
         echo("<h2>product by name('Logitech M510 mouse')</h2>");
-        $item = get_product_by_name($pdo, "Logitech M510 mouse");
+        $item = getProductByName($pdo, "Logitech M510 mouse");
         echo($item);
 
         echo("<h2>list</h2>");
-        list_products($pdo);
+        listProducts($pdo);
 
-        echo("<h2>product_exists</h2>");
-        product_exists($pdo, "Ballcap Hat");
-        product_exists($pdo, "fake");
+        echo("<h2>productExists</h2>");
+        productExists($pdo, "Ballcap Hat");
+        productExists($pdo, "fake");
 
-        echo("<h2>add_product</h2><br>");
-        add_product($pdo, "test", 2.99, "description", "https://images-na.ssl-images-amazon.com/images/I/41GjoODyC0L._AC_US160_.jpg");
+        echo("<h2>addProduct</h2><br>");
+        addProduct($pdo, "test", 2.99, "description", "https://images-na.ssl-images-amazon.com/images/I/41GjoODyC0L._AC_US160_.jpg");
 
     } catch (PDOException $e) {
         die( $e->getMessage() );
