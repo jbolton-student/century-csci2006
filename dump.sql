@@ -16,56 +16,103 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `products`
+-- Table structure for table `categories`
 --
 
-DROP TABLE IF EXISTS `products`;
+DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `products` (
+CREATE TABLE `categories` (
+  `type` varchar(20) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cost` decimal(18,2) NOT NULL,
-  `name` varchar(128) DEFAULT NULL,
-  `image` varchar(256) DEFAULT NULL,
-  `description` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `categories`
+--
+
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES ('Economics',1),('Computer Science',2),('Engineering',3),('Business',4),('English',5),('Mathematics',6),('Student Success',7),('Statistics',8);
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `credentials`
+--
+
+DROP TABLE IF EXISTS `credentials`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `credentials` (
+  `UserID` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(64) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`UserID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `credentials`
+--
+
+LOCK TABLES `credentials` WRITE;
+/*!40000 ALTER TABLE `credentials` DISABLE KEYS */;
+INSERT INTO `credentials` VALUES (1,'jake@foo.com','cat');
+/*!40000 ALTER TABLE `credentials` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customers`
+--
+
+DROP TABLE IF EXISTS `customers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customers` (
+  `email` varchar(40) NOT NULL,
+  `university` varchar(60) NOT NULL,
+  `city` varchar(30) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customers`
+--
+
+LOCK TABLES `customers` WRITE;
+/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
+INSERT INTO `customers` VALUES ('bsmith@gmail.com','University of Minnesota','stillwater',1,'Smith, Bob'),('msue@gmail.com','University of Minnesota','Maplewood',2,'Sue, Mary'),('jsmith@gmail.com','University of Minnesota','stillwater',3,'Smith, Jane'),('tsmith@gmail.com','University of Wisconsin','Janesville',4,'Smith, Tom'),('kjohnson@gmail.com','University of Wisconsin','Janesville',5,'Johnson, Karen'),('kteller@gmail.com','University of Wisconsin','Janesville',6,'Teller, Karen'),('bjohnson@gmail.com','York University','NowhereVille',7,'Johnson, Bill'),('tjohnson@gmail.com','York University','NowhereVille',8,'Johnson, Ted'),('fpenne@gmail.com','Paris University','Paris',9,'Penne, Frank'),('jpenne@gmail.com','Paris University','Paris',10,'Penne, Jane'),('jdoe@gmail.com','University of Massachusetts','Tanner',11,'Doe, Jane'),('mkatherin@gmail.com','University of Massachusetts','Tanner',12,'Katherin, Mary'),('mbelle@gmail.com','University of Michigan','Tanner',13,'Belle, Mary'),('foo@bar.com','University of Foo','bar',14,'bob'),('f@bar.com','University of Foo','Bar',15,'fred');
+/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `imprints`
+--
+
+DROP TABLE IF EXISTS `imprints`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `imprints` (
+  `type` varchar(30) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `products`
+-- Dumping data for table `imprints`
 --
 
-LOCK TABLES `products` WRITE;
-/*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,19.99,'Logitech M510 mouse','https://images-na.ssl-images-amazon.com/images/I/41GjoODyC0L._AC_US160_.jpg','Basic wireless mouse'),(2,6.95,'Ballcap Hat','https://images-na.ssl-images-amazon.com/images/I/41sy4v0RaoL._AC_US200_.jpg','Plain without logo.'),(5,2.99,'test','description','https://images-na.ssl-images-amazon.com/images/I/41GjoODyC0L._AC_US160_.jpg');
-/*!40000 ALTER TABLE `products` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `users`
---
-
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(64) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `money` decimal(18,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'jake b','foo',100.00),(2,'bob','bar',10.00);
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES `imprints` WRITE;
+/*!40000 ALTER TABLE `imprints` DISABLE KEYS */;
+INSERT INTO `imprints` VALUES ('Addison-Wesley',1),('Longman',2),('Pearson',3),('Prentice Hail',4),('Undecided',5);
+/*!40000 ALTER TABLE `imprints` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -77,4 +124,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-19 11:05:33
+-- Dump completed on 2017-04-19 11:39:55
