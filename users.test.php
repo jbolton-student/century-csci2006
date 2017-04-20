@@ -1,9 +1,5 @@
 <?php
-
 require_once('db.php');
-
-$loggedIn = validateUser("Jake b", "foo");
-echo("Logged in=", $loggedIn);
 
 /*create table
 
