@@ -1,0 +1,22 @@
+
+
+table {
+    border: solid 1pt black;
+    border-collapse: collapse;
+}
+
+caption {
+    font-weight: bold;
+    padding: 0.25em 0 0.25em 0;
+    text-align: left;
+}
+
+td {
+    border: solid 1pt black;
+}
+
+.loginFail {
+        font-style: italic;
+        color: red;
+}
+
