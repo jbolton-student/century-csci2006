@@ -30,7 +30,7 @@ function validateUser($user, $pass) {
     $statement->execute();
 
     if($statement->rowCount() == 1) {
-        return True;
+        return $statement;
     }
     return False;
 }
@@ -43,13 +43,31 @@ function loginUser() {
     ) {
         $username = $_POST['username'];
         $password = $_POST['password'];
-
-        if(validateUser($username, $password) ) {
+        // Checking for valid_user & isAdmin
+        if($user = validateUser($username, $password) ) {
+            $row = $user->fetch();
             $_SESSION['valid_user'] = $username;
+            $_SESSION['isAdmin'] = $row['isAdmin'];
         }
     } else {
         return;
     }
 }
+// To give? admin privledges for product_update.php
+function isAdmin(){
 
+}
+// To display catergories for product_update.php
+function getCatergories(){
+  $pdo = DBConnect();
+  $sql = "select * from catergories";
+
+  $statement = $pdo->prepare($sql);
+
+  $statement->execute();
+
+  return $statement;
+}
+
+}
 ?>

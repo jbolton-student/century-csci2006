@@ -1,21 +1,50 @@
 <?php
+// If Admin privledges available
+// User will have the ability to
+// Add/Update products
 session_start();
 
 require_once('common.php');
 require_once('db.php');
+// If user !admin || !logged in redirect to home.php
+  if(isset($_SESSION['isAdmin'])){
+    if($_SESSION['isAdmin'] === 0)
+      redirect("home.php");
+  }
 
 ?>
 
-<html><body>
-<h1>Home</h1>
-<p>user: <b>
-<?php
-    echo getUsername();
-?>
-</b></p>
-
-
-<p>Form here: for all fields of table products.</p>
+<html>
+<body>
+  <h1>Home</h1>
+  <p>user: <b>
+  <?php
+      echo getUsername();
+  ?>
+  </b></p>
+  <p>Form here: for all fields of table products.</p>
+  <form role="form" method="POST" action="#" name="editProduct">
+    <lable>Description: <br></lable>
+    <input type="text" name="description"/>
+    <br>
+    <lable>Price: <br></lable>
+    <input type="text" name="price"/>
+    <br>
+    <lable>Image: <br></lable>
+    <input type="file" name="fileToUpload" id="fileToUpload"/>
+    <br>
+    <select name="Category">
+        <?php
+          $catergories = getCatergories();
+          // Dynamically displaying catergories from DB
+          if(($catergories != null) && ($catergories->rowCount() > 0)){
+            while($data = $catergories->fetch()){
+              echo "<option>" . $data['type'] . "</option>";
+            }
+          }
+         ?>
+      <input type="submit" value="submit"/>
+     </form>
 
 psuedo code:
 
@@ -44,4 +73,5 @@ else:
 
 
 
-</body></html>
+</body>
+</html>
