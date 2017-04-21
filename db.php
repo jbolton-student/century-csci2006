@@ -57,10 +57,10 @@ function loginUser() {
 function isAdmin(){
 
 }
-// To display catergories for product_update.php
-function getCatergories(){
+// To display categories for product_update.php
+function getCategories(){
   $pdo = DBConnect();
-  $sql = "select * from catergories";
+  $sql = "select * from categories";
 
   $statement = $pdo->prepare($sql);
 

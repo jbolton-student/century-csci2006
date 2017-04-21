@@ -35,10 +35,10 @@ require_once('db.php');
     <br>
     <select name="Category">
         <?php
-          $catergories = getCatergories();
-          // Dynamically displaying catergories from DB
-          if(($catergories != null) && ($catergories->rowCount() > 0)){
-            while($data = $catergories->fetch()){
+          $categories = getCategories();
+          // Dynamically displaying categories from DB
+          if(($categories != null) && ($categories->rowCount() > 0)){
+            while($data = $categories->fetch()){
               echo "<option>" . $data['type'] . "</option>";
             }
           }
