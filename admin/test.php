@@ -20,36 +20,35 @@
   }
 
   if(isset($_POST['ID'])){
-    print_r("post id isset");
-    $id = $_POST['ID'];
+    if(!is_null($_POST['ID'])){
+      $id = $_POST['ID'];
+    }
   }
 
   print_r($_POST);
-  if(isset($_POST['name'])&& isset($_POST['cost']) && isset($_POST['description']) && isset($_POST['image'])&& isset($_POST['category'])){
-    if(is_null($_POST['ID']) || $_POST['ID'] == ""){
-      $name = $_POST['name'];
-      $cost = $_POST['cost'];
-      $description = $_POST['description'];
-      $image = $_POST['image'];
-      $category= $_POST['category'];
-
-      print_r("Attempting to add product to the DB");
-      $id = addProduct($_POST['name'],$_POST['cost'],$_POST['description'],$_POST['image'],$_POST['category']);
-      $_POST['ID'] = $id;
-    }
-    else if(!is_null($_POST['ID']) || $_POST['ID'] != ""){
-      $id = $_POST['ID'];
-      $name = $_POST['name'];
-      $cost = $_POST['cost'];
-      $description = $_POST['description'];
-      $image = $_POST['image'];
-      $category= $_POST['category'];
-
-      print_r("Attempting to update DB");
-      $id = updateProduct($_POST['ID'],$_POST['name'],$_POST['cost'],$_POST['description'],$_POST['image'],$_POST['category']);
-      $_POST['ID'] = $id;
-    }
-  }
+  // if(isset($_POST['name'])&& isset($_POST['cost']) && isset($_POST['description']) && isset($_POST['image'])&& isset($_POST['category'])){
+  //   if(is_null($_POST['ID']) || $_POST['ID'] == ""){
+  //     $name = $_POST['name'];
+  //     $cost = $_POST['cost'];
+  //     $description = $_POST['description'];
+  //     $image = $_POST['image'];
+  //     $category= $_POST['category'];
+  //
+  //     print_r("Attempting to add product to the DB");
+  //     $id = addProduct($_POST['name'],$_POST['cost'],$_POST['description'],$_POST['image'],$_POST['category']);
+  //   }
+  //   else if(!is_null($_POST['ID']) || $_POST['ID'] != ""){
+  //     $id = $_POST['ID'];
+  //     $name = $_POST['name'];
+  //     $cost = $_POST['cost'];
+  //     $description = $_POST['description'];
+  //     $image = $_POST['image'];
+  //     $category= $_POST['category'];
+  //
+  //     print_r("Attempting to update DB");
+  //     $id = updateProduct($_POST['ID'],$_POST['name'],$_POST['cost'],$_POST['description'],$_POST['image'],$_POST['category']);
+  //   }
+  // }
 ?>
 
 <html>
@@ -70,7 +69,7 @@
   ?>
   </b></p>
   <!-- <p>Form here: for all fields of table products.</p> -->
-  <form role="form" method="POST" action="product_update.php" name="editProduct">
+  <form role="form" method="POST" action="testHelper.php" name="editProduct">
     <lable>Item Name: <br></lable>
     <input type="text" name="name" value="<?php echo $name; ?>"/>
     <br>

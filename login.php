@@ -23,7 +23,7 @@ if(isLoggedIn()) {
 
 <html>
 <body>
-<h1> Home </h1>
+<h1> Login Page </h1>
 <?php
 
 if($error) echo "<p>Error: Bad username or password</p>";

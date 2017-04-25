@@ -8,6 +8,7 @@
   require_once('../db.php');
   $name = $cost = $description = $image = $category = "";
   $id=null;
+  $done=false;
 
   // No admin session redirect
   if(is_null($_SESSION['isAdmin'])){
@@ -35,7 +36,9 @@
 
       print_r("Attempting to add product to the DB");
       $id = addProduct($_POST['name'],$_POST['cost'],$_POST['description'],$_POST['image'],$_POST['category']);
-      $_POST['ID'] = $id;
+      if($id != null){
+        $done=true;
+      }
     }
     else if(!is_null($_POST['ID']) || $_POST['ID'] != ""){
       $id = $_POST['ID'];
@@ -47,7 +50,7 @@
 
       print_r("Attempting to update DB");
       $id = updateProduct($_POST['ID'],$_POST['name'],$_POST['cost'],$_POST['description'],$_POST['image'],$_POST['category']);
-      $_POST['ID'] = $id;
+      $done=true;
     }
   }
 ?>
@@ -70,7 +73,7 @@
   ?>
   </b></p>
   <!-- <p>Form here: for all fields of table products.</p> -->
-  <form role="form" method="POST" action="product_update.php" name="editProduct">
+  <form role="form" method="POST" action="test.php" id="form">
     <lable>Item Name: <br></lable>
     <input type="text" name="name" value="<?php echo $name; ?>"/>
     <br>
@@ -98,6 +101,12 @@
     <input type="hidden" name="ID" value="<?php echo $id; ?>" />
     <input type="submit" value="submit"/>
   </form>
+
+  <?php
+    if(done){
+      echo "<script>document.getElementById('form').submit()</script>";
+    }
+  ?>
 
 psuedo code:
 

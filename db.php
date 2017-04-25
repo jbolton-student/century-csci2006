@@ -68,6 +68,53 @@ function getCategories(){
 
   return $statement;
 }
+// To add products to the DB (taken from products.text.php)
+function addProduct($name, $cost, $description, $image, $category){
+    if($name == "" || $cost == "" || $image == "" || $description == "" || $category == ""){
+        return;
+    }
 
+    $pdo = DBConnect();
+
+    $sql = "insert into productTest(name, cost, description, image, category) values (:name, :cost, :description, :image, :category)";
+    $statement = $pdo->prepare($sql);
+    $statement->bindValue(":name", $name);
+    $statement->bindValue(":cost", $cost);
+    $statement->bindValue(":description", $description);
+    $statement->bindValue(":image", $image);
+    $statement->bindValue(":category", $category);
+
+    $statement->execute();
+
+    $x = "select * from productTest where ID=LAST_INSERT_ID()";
+    $statement = $pdo->prepare($x);
+    $statement->execute();
+    if($statement->rowCount() > 0){
+      $row = $statement->fetch();
+      return $row['ID'];
+    }
 }
+function updateProduct($id, $name, $cost, $description, $image, $category){
+  if($id =="" || $name == "" || $cost == "" || $image == "" || $description == "" || $category == ""){
+    print_r("I returned");
+      return;
+  }
+  print_r("in updateProduct");
+  $pdo = DBConnect();
+
+  $sql = "update productTest set name=:name, cost=:cost, description=:description, image=:image, category=:category where ID=:id";
+  $statement = $pdo->prepare($sql);
+  $statement->bindValue(":name", $name);
+  $statement->bindValue(":cost", $cost);
+  $statement->bindValue(":description", $description);
+  $statement->bindValue(":image", $image);
+  $statement->bindValue(":category", $category);
+  $statement->bindValue(":id", $id);
+
+  $statement->execute();
+
+  return $id;
+}
+
+
 ?>
