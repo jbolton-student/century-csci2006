@@ -10,7 +10,7 @@ loginUser();
 if(isLoggedIn()) {
     redirect("home.php");
 } else {
-    if(isset($_POST['username'])
+    if(isset($_POST['email'])
         || isset($_POST['password'])
     ) {
         $error = true;
@@ -26,14 +26,14 @@ if(isLoggedIn()) {
 <h1> Login Page </h1>
 <?php
 
-if($error) echo "<p>Error: Bad username or password</p>";
+if($error) echo "<p>Error: Bad email or password</p>";
 
 ?>
     <form method="post" action="login.php">
         <table>
         <tr>
-            <td>Username: </td>
-            <td><input type="text" name="username"></td>
+            <td>Email: </td>
+            <td><input type="text" name="email"></td>
         </tr>
         <tr>
             <td>Password: </td>

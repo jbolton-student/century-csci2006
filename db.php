@@ -17,14 +17,14 @@ function DBConnect() {
     }
 }
 
-function validateUser($user, $pass) {
+function validateUser($email, $pass) {
     // check if user/pass are right
     $pdo = DBConnect();
-    $sql = "select * from users where username=:user
+    $sql = "select * from credentials where email=:email
         and password=:pass";
 
     $statement = $pdo->prepare($sql);
-    $statement->bindValue(":user", $user);
+    $statement->bindValue(":email", $email);
     $statement->bindValue(":pass", $pass);
 
     $statement->execute();
@@ -38,15 +38,15 @@ function validateUser($user, $pass) {
 function loginUser() {
     // Login if possible
     // if POST, attempt to login
-    if (isset($_POST['username'])
+    if (isset($_POST['email'])
         && isset($_POST['password'])
     ) {
-        $username = $_POST['username'];
+        $email = $_POST['email'];
         $password = $_POST['password'];
         // Checking for valid_user & isAdmin
-        if($user = validateUser($username, $password) ) {
+        if($user = validateUser($email, $password) ) {
             $row = $user->fetch();
-            $_SESSION['valid_user'] = $username;
+            $_SESSION['valid_user'] = $email;
             $_SESSION['isAdmin'] = $row['isAdmin'];
         }
     } else {
