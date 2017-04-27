@@ -96,7 +96,7 @@ function addProduct($name, $cost, $description, $image, $category){
 }
 function updateProduct($id, $name, $cost, $description, $image, $category){
   if($id =="" || $name == "" || $cost == "" || $image == "" || $description == "" || $category == ""){
-    print_r("I returned");
+    //print_r("I returned");
       return;
   }
   print_r("in updateProduct");
