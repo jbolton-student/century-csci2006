@@ -31,17 +31,13 @@ class Cart implements Countable {
 
         // remove an item from the cart
         public function removeItem($id) {
-            echo "<pre>";
-            print_r($this->items);
-            echo "</pre>";
-
-
             for($i = 0; $i < $this->count(); $i++) {
                 if($this->items[$i]->getID() == $id) {
                     unset($this->items[$i]);
-                    return;
+                    // break;
                 }
             }
+
         }
 
         // update the quantity of an item in the cart

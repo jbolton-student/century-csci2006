@@ -9,7 +9,6 @@ session_start();
 
 // if non-existing, create instance.
 initCart();
-
 $cart = getCart();
 // $product = getProductByID(1);
 // // can add either using Product() instance
@@ -36,6 +35,10 @@ $_SESSION['Cart'] = $cart; // maybe redundant;
         $link = " <a href='" . $_SERVER['PHP_SELF'] . "?remove=" . $item->getID() . "'>remove item</a>";
         echo "<br>Item: " . $item->getName() . $link;
     }
+
+    echo "<pre>";
+    print_r($cart->getItems());
+    echo "</pre>";
 
 // $cart->printCart();
 
