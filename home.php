@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require('addToCart.php');
 require_once('common.php');
 //print_r($_SESSION['cart']);
