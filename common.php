@@ -9,6 +9,14 @@ function isLoggedIn() {
     }
 }
 
+function isAdmin() {
+    if(isset($_SESSION['isAdmin'])) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function getUsername() {
     // alias for current username
     if(isLoggedIn()) {

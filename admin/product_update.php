@@ -3,19 +3,32 @@
   // User will have the ability to
   // Add/Update products
   session_start();
+
   require_once('../common.php');
   require_once('../db.php');
+
   $name = $cost = $description = $image = $category = "";
   $id=null;
-  // No admin session redirect
-  if(is_null($_SESSION['isAdmin'])){
-      redirect("../login.php");
+
+  // must be logged in
+  if(!isLoggedIn()) {
+    redirect("../login.php");
   }
-  // If user !admin || !logged in redirect to home.php
-  if(isset($_SESSION['isAdmin'])){
-    if($_SESSION['isAdmin'] === 0)
-      redirect("home.php");
+
+  //must be admin
+  if(!isAdmin()) {
+    redirect("../home.php");
   }
+
+  // // No admin session redirect
+  // if(is_null($_SESSION['isAdmin'])){
+  //     redirect("../login.php");
+  // }
+  // // If user !admin || !logged in redirect to home.php
+  // if(isset($_SESSION['isAdmin'])){
+  //   if($_SESSION['isAdmin'] === 0)
+  //     redirect("home.php");
+  // }
   if(isset($_POST['ID'])){
     if(!is_null($_POST['ID'])){
       $id = $_POST['ID'];

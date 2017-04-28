@@ -53,10 +53,7 @@ function loginUser() {
         return;
     }
 }
-// To give? admin privledges for product_update.php
-function isAdmin(){
 
-}
 // To display categories for product_update.php
 function getCategories(){
   $pdo = DBConnect();
