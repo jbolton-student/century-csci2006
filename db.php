@@ -41,19 +41,22 @@ function loginUser() {
     if (isset($_POST['email'])
         && isset($_POST['password'])
     ) {
-        $email = $_POST['email'];
+        $username = $_POST['email'];
         $password = $_POST['password'];
         // Checking for valid_user & isAdmin
-        if($user = validateUser($email, $password) ) {
+        if($user = validateUser($username, $password) ) {
             $row = $user->fetch();
-            $_SESSION['valid_user'] = $email;
+            $_SESSION['valid_user'] = $username;
             $_SESSION['isAdmin'] = $row['isAdmin'];
         }
     } else {
         return;
     }
 }
+// To give? admin privledges for product_update.php
+function isAdmin(){
 
+}
 // To display categories for product_update.php
 function getCategories(){
   $pdo = DBConnect();

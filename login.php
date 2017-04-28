@@ -3,7 +3,6 @@ session_start();
 
 require_once('db.php');
 require_once('common.php');
-require_once('header.inc.php');
 
 $error = false;
 loginUser();
@@ -33,7 +32,7 @@ if($error) echo "<p>Error: Bad email or password</p>";
     <form method="post" action="login.php">
         <table>
         <tr>
-            <td>Email: </td>
+            <td>email: </td>
             <td><input type="text" name="email"></td>
         </tr>
         <tr>
