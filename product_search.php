@@ -12,6 +12,8 @@
             return "";
     }
 
+    echo "<style>table, td { border: 1px solid darkgray; }</style>";
+
 	// This function displays the products of the database in a table
 	//
 	function listProducts($pdo, $searchValue, $ordering) {
@@ -42,12 +44,13 @@
 		 }
 		 else {
 			 // present data in a table
-			 echo("<table><tr><th>Product Name</th><th>Price</th><th>Description</th><th>Image</th><th>Add to Cart</th></tr>");
+			 echo("<table id=\"products\"><tr><th>Product Name</th><th>Price</th><th>Description</th><th>Image</th><th>Add to Cart</th></tr>");
 			 echo("<caption> $hitCount item(s) found: </caption>");
+
 			 foreach($data as $i => $row) {
-				 echo("<tr><td>".$row[2]."</td><td>".$row[1]."</td><td>".$row[4]."</td>");
-				 echo("<td>" . addImageWithLink($row[3], $row[4], $row[0]) . "</td>");
-				 echo("<td>" . addCartIcon($row[0]) . "</td></tr>");
+				 echo("<tr><td>".$row["name"]."</td><td>".$row["cost"]."</td><td>".$row["description"]."</td>");
+				 echo("<td>" . addImageWithLink($row["image"], $row["description"], $row["id"]) . "</td>");
+				 echo("<td>" . addCartIcon($row["id"]) . "</td></tr>");
 			}
 			 echo("</table>");
 
