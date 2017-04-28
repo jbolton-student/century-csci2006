@@ -1,6 +1,7 @@
 <?php
 	session_start();
 
+	require_once('header.inc.php');
 	require_once('db.php');									// provides DB conn functions
 
 
@@ -111,7 +112,7 @@ function addCartIcon($prodId) {
 			}
 			else {												// display all records
 				$pdo = DBConnect();							// connect to the DB
-				listProducts($pdo, "", "1", 0);
+				listProducts($pdo, "", "1");
 			}
 
 			$pdo = null;										// free-up DB resources

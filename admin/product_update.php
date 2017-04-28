@@ -6,6 +6,7 @@
 
   require_once('../common.php');
   require_once('../db.php');
+  require_once('../header.inc.php');
 
   $name = $cost = $description = $image = $category = "";
   $id=null;
