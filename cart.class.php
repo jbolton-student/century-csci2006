@@ -31,12 +31,18 @@ class Cart implements Countable {
 
         // remove an item from the cart
         public function removeItem($id) {
-            for($i = 0; $i < $this->count(); $i++) {
-                if($this->items[$i]->getID() == $id) {
-                    unset($this->items[$i]);
-                    // break;
+            foreach ($this->items as $k=>$v) {
+                if($v->getID() == $id) {
+                    unset($this->items[$k]);
+                    break;
                 }
             }
+            // for($i = 0; $i < $this->count(); $i++) {
+            //     if($this->items[$i]->getID() == $id) {
+            //         unset($this->items[$i]);
+            //         // break;
+            //     }
+            // }
 
         }
 
