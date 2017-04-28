@@ -4,7 +4,7 @@ require('addToCart.php');
 require_once('common.php');
 //print_r($_SESSION['cart']);
 
-if(!userLoggedIn())
+if(!isLoggedIn()) {
   redirect('login.php');
 }
 
