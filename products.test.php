@@ -44,32 +44,13 @@ function productExists($pdo, $name) {
     }
 }
 
-function getProductByName($pdo, $name) {
-    $item = null;
-    $sql = "select * from products where name=:name";
-    $statement = $pdo->prepare($sql);
-    $statement->bindValue(":name", $name);
-    $statement->execute();
-
-
-    if($statement->rowCount() == 0 ) {
-        return null;
-    } else {
-        $row = $statement->fetch();
-        $p = new Product($row);
-        return $p;
-    }
-
-
-}
-
 function test() {
     $pdo = DBConnect();
     try {
 
         echo("<h2>product by name('Logitech M510 mouse')</h2>");
-        $item = getProductByName($pdo, "Logitech M510 mouse");
-        echo($item);
+        $product = getProductByName($pdo, "Logitech M510 mouse");
+        echo($product);
 
         echo("<h2>list</h2>");
         listProducts($pdo);

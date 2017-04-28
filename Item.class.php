@@ -2,16 +2,16 @@
 
 class Item {
 
-    private $name;
+    private $cost;
     private $description;
-    private $price;
-    private $qty;
+    private $name;
+    private $image;
 
-    function __construct($n, $d, $p, $q) {
-        $this->name = $n;
-        $this->description = $d;
-        $this->price = $p;
-        $this->qty = $q;
+    function __construct($name, $cost, $description, $image) {
+        $this->cost = $cost;
+        $this->name = $name;
+        $this->image = $image;
+        $this->description = $description;
     }
 
     function getSubTotal() {

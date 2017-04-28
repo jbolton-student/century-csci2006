@@ -8,30 +8,31 @@ class Cart implements Countable {
     }
 
     // add ShoppingCartItem to cart
-    public function addItem($key, $item) {
-        $this->items[$key] = $item;
+    public function addItem($id) {
+        // $this->items[$key] = $id;
+        array_push($this->items, $id);
     }
 
     // remove an item from the cart
-    public function removeItem($key) {
-        if (isset($this->items[$key])) {
-            unset($this->items[$key]);
+    public function removeItem($id) {
+        if (isset($this->items[$id])) {
+            unset($this->items[$id]);
         }
     }
 
     // update the quantity of an item in the cart
-    public function updateItem($key, $quantity) {
-        if (isset($this->items[$key])) {
-            if ($quantity == 0) {
-                $this->removeItem($key);
-            } else {
-                $item = $this->items[$key];
-                $item->setQuantity($quantity);
-                $this->items[$key] = $item;
-            }
-        }
+    // public function updateItem($id, $quantity) {
+    //     if (isset($this->items[$id])) {
+    //         if ($quantity == 0) {
+    //             $this->removeItem($id);
+    //         } else {
+    //             $item = $this->items[$id];
+    //             $item->setQuantity($quantity);
+    //             $this->items[$id] = $item;
+    //         }
+    //     }
 
-    }
+    // }
 
     // return the count of the items in the cart
     public function count() {
@@ -39,14 +40,15 @@ class Cart implements Countable {
     }
 
     public function getItems() {
-        return this->items;
+        return $this->items;
     }
 
     // return subtotal of all items in the cart
     public function getSubtotal() {
         $subtotal = 0.0;
+        // die($this->count());
         foreach($this->items as $item) {
-            $subtotal += $item->getSubtotal();
+            $subtotal += $item->getCost();
         }
         return $subtotal;
     }
@@ -54,11 +56,20 @@ class Cart implements Countable {
     public function __toString() {
         $message = '';
         foreach($this->items as $item) {
-            $message += $item.toString();
+            // $message += $item.toString();
+            $message += (string)$item;
         }
         return $message;
     }
 
+function printCart() {
+    echo "<h1>cart items:</h1>";
+    foreach ($this->items as $item) {
+        echo $item->__toString() . "<br>";
+    }
+
+    echo "Total: " . $this->getSubtotal() . " <br>";
 }
 
+}
 ?>

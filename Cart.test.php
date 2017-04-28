@@ -1,22 +1,34 @@
 <?php
 session_start();
 
-require_once('Item.class.php');
+require_once('Products.class.php');
 require_once('Cart.class.php');
-
-    todo: finish...
 
 $cart;
 
-if(!isset($_SESSION['shoppingCart'])) {
-    $_SESSION['shoppingCart'] = new Cart();
+// todo: debug remove
+if(isset($_SESSION['Cart'])) {
+    unset($_SESSION["Cart"]);
 }
 
-$cart = $_SESSION['shoppingCart'];
-$item = new Product();
+if(!isset($_SESSION['Cart'])) {
+    $_SESSION['Cart'] = new Cart();
+}
+
+$cart = $_SESSION['Cart'];
+$product = getProductByID(1);
+// echo $product;
+$cart->addItem($product);
+$cart->addItem(getProductByID(2));
+
+echo("<h1>listing</h1>");
+$cart->printCart();
+
+$_SESSION['Cart'] = $cart; // maybe redundant;
+
 
 //update shopping cart
-$_SESSION['shoppingCart'] = $cart;
+// $_SESSION['Cart'] = $cart;
 
 /* from class:
 
@@ -34,4 +46,25 @@ $_SESSION['shoppingCart'] = $cart;
 
 */
 
+// function getCart() {}
+
+// function printCart() {
+//     echo "<h1>cart items:</h1>";
+
+//     if (isset($_SESSION['Cart'])) {
+//         $cart = $_SESSION['Cart'];
+
+//         $items = $cart->getItems();
+
+//         foreach ($items as $item) {
+//             echo $item->__toString() . "<br>";
+//         }
+
+//         echo "Total: " . $cart->getSubtotal() . " <br>";
+//     }
+// }
+
 ?>
+
+
+
