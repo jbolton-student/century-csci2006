@@ -1,35 +1,69 @@
 <?php
-session_start();
 
 require_once('Products.class.php');
 require_once('Cart.class.php');
 
-// $cart;
+session_start();
 
-// debug: enable to always delete cart for testing
-if(isset($_SESSION['Cart'])) {
-    unset($_SESSION["Cart"]);
-}
+// handle_events();
 
 // if non-existing, create instance.
 initCart();
 
 $cart = getCart();
-$product = getProductByID(1);
+// $product = getProductByID(1);
+// // can add either using Product() instance
+// // or by the ID number alone.
+// $cart->addItem($product);
+// $cart->addItem(getProductByID(2));
+// $cart->addItem(getProductByID(2));
 
-// can add either using Product() instance
-// or by the ID number alone.
-$cart->addItem($product);
-$cart->addItem(getProductByID(2));
-$cart->addItem(getProductByID(2));
-$cart->addItem(getProductByID(2));
-
-echo("<h1>listing</h1>");
-$cart->printCart();
+handleSubmit();
 
 $_SESSION['Cart'] = $cart; // maybe redundant;
 
+
+    echo "<a href='" . $_SERVER['PHP_SELF'] . "?action=empty'>Empty Cart</a>";
+    echo "<br><a href='" . $_SERVER['PHP_SELF'] . "?add=1'>Buy ID=1</a>";
+    echo "<br><a href='" . $_SERVER['PHP_SELF'] . "?add=2'>Buy ID=2</a>";
+
+    echo("<br>Total: $" . $cart->getSubtotal());
+    echo(" Count: " . $cart->count());
+
+
+    echo("<h1>listing</h1>");
+    foreach($cart->getItems() as $item) {
+        $link = " <a href='" . $_SERVER['PHP_SELF'] . "?remove=" . $item->getID() . "'>remove item</a>";
+        echo "<br>Item: " . $item->getName() . $link;
+    }
+
+// $cart->printCart();
+
+function handleSubmit() {
+    $cart = getCart();
+
+    // if ?action=empty
+    // then delete all $cart->items
+    if(isset($_GET['action'])) {
+        if($_GET['action'] == "empty") {
+            $cart->clear();
+        }
+    }
+
+    // if ?remove=id
+    // then remove one item with id=id
+    if(isset($_GET['remove'])) {
+        $id = $_GET['remove'];
+        $cart->removeItem($id);
+    }
+
+    // if ?add=id
+    if(isset($_GET['add'])) {
+        $id = $_GET['add'];
+        $cart->addItem(getProductByID($id));
+    }
+
+}
+
+
 ?>
-
-
-

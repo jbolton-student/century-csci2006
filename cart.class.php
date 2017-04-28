@@ -19,6 +19,10 @@ class Cart implements Countable {
             return (empty($this->items));
         }
 
+        public function clear() {
+            $this->items = Array();
+        }
+
         // add ShoppingCartItem to cart
         public function addItem($product) {
             // $this->items[$key] = $product;
@@ -27,12 +31,15 @@ class Cart implements Countable {
 
         // remove an item from the cart
         public function removeItem($id) {
-            // todo test this:
-            foreach($this->items as $item) {
-                if (isset($this->items[$id])
-                    && $this->items.getID() == $id)
-                {
-                        unset($this->items[$id]);
+            echo "<pre>";
+            print_r($this->items);
+            echo "</pre>";
+
+
+            for($i = 0; $i < $this->count(); $i++) {
+                if($this->items[$i]->getID() == $id) {
+                    unset($this->items[$i]);
+                    return;
                 }
             }
         }
