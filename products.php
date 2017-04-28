@@ -12,7 +12,7 @@
 
     function getAllProducts($pdo) {
         // using classes
-        $sql = "select * from productTest";
+        $sql = "select * from products";
         $statement = $pdo->prepare($sql);
         $statement->execute();
 
@@ -39,7 +39,7 @@
 
     function listProducts($pdo, $searchValue) {
         // using classes
-        $sql = "select * from productTest where name like :searchValue";
+        $sql = "select * from products where name like :searchValue";
         $searchValue = "%" . $searchValue . "%";
         $statement = $pdo->prepare($sql);
         $statement->bindValue(":searchValue", $searchValue);

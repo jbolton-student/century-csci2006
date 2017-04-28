@@ -1,8 +1,8 @@
 <?php
 
 define('DBHOST', 'localhost');
-define('DBNAME', 'projectBD');
+define('DBNAME', 'project');
 define('DBUSER', 'root');
-define('DBPASS', 'root');
+define('DBPASS', '');
 
 ?>

@@ -5,6 +5,10 @@
 	require_once('db.php');									// provides DB conn functions
 
 
+	if(!isset($_POST['orderTbl'])) {
+		$_POST['orderTbl'] = 1;
+	}
+
 	function getSearchTerm() {
         if(isset($_POST['searchStr']))
             return $_POST['searchStr'];

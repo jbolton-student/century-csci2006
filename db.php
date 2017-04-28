@@ -53,10 +53,7 @@ function loginUser() {
         return;
     }
 }
-// To give? admin privledges for product_update.php
-function isAdmin(){
 
-}
 // To display categories for product_update.php
 function getCategories(){
   $pdo = DBConnect();
@@ -76,7 +73,7 @@ function addProduct($name, $cost, $description, $image, $category){
 
     $pdo = DBConnect();
 
-    $sql = "insert into productTest(name, cost, description, image, category) values (:name, :cost, :description, :image, :category)";
+    $sql = "insert into products(name, cost, description, image, category) values (:name, :cost, :description, :image, :category)";
     $statement = $pdo->prepare($sql);
     $statement->bindValue(":name", $name);
     $statement->bindValue(":cost", $cost);
@@ -86,7 +83,7 @@ function addProduct($name, $cost, $description, $image, $category){
 
     $statement->execute();
 
-    $x = "select * from productTest where ID=LAST_INSERT_ID()";
+    $x = "select * from products where ID=LAST_INSERT_ID()";
     $statement = $pdo->prepare($x);
     $statement->execute();
     if($statement->rowCount() > 0){

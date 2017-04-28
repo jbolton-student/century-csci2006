@@ -4,7 +4,7 @@ require('addToCart.php');
 require_once('common.php');
 //print_r($_SESSION['cart']);
 
-if(empty($_SESSION['valid_user'])){
+if(!userLoggedIn())
   redirect('login.php');
 }
 
@@ -42,7 +42,8 @@ function countCart(){
           <p class="navbar-text navbar-left">View Your Cart Items: </p>
           <a href="cart_show.php" class="btn btn-default navbar-btn navbar-left"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge"><?php countCart()?></span></a>
 
-          <button type="button" style="margin-left:10px" class="btn btn-default navbar-btn navbar-right">Sign Out</button>
+          <!-- <button type="button" style="margin-left:10px" class="btn btn-default navbar-btn navbar-right">Sign Out</button> -->
+          <a href="logout.php" class="btn btn-default navbar-btn navbar-right">Sign Out</a>
           <p class="navbar-text navbar-right">Signed in as <?php echo getUsername();?>: </p>
         </div>
       </nav>
