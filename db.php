@@ -17,14 +17,14 @@ function DBConnect() {
     }
 }
 
-function validateUser($email, $pass) {
+function validateUser($user, $pass) {
     // check if user/pass are right
     $pdo = DBConnect();
-    $sql = "select * from credentials where email=:email
+    $sql = "select * from users where username=:user
         and password=:pass";
 
     $statement = $pdo->prepare($sql);
-    $statement->bindValue(":email", $email);
+    $statement->bindValue(":user", $user);
     $statement->bindValue(":pass", $pass);
 
     $statement->execute();
@@ -38,22 +38,25 @@ function validateUser($email, $pass) {
 function loginUser() {
     // Login if possible
     // if POST, attempt to login
-    if (isset($_POST['email'])
+    if (isset($_POST['username'])
         && isset($_POST['password'])
     ) {
-        $email = $_POST['email'];
+        $username = $_POST['username'];
         $password = $_POST['password'];
         // Checking for valid_user & isAdmin
-        if($user = validateUser($email, $password) ) {
+        if($user = validateUser($username, $password) ) {
             $row = $user->fetch();
-            $_SESSION['valid_user'] = $email;
+            $_SESSION['valid_user'] = $username;
             $_SESSION['isAdmin'] = $row['isAdmin'];
         }
     } else {
         return;
     }
 }
+// To give? admin privledges for product_update.php
+function isAdmin(){
 
+}
 // To display categories for product_update.php
 function getCategories(){
   $pdo = DBConnect();

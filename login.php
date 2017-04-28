@@ -3,7 +3,6 @@ session_start();
 
 require_once('db.php');
 require_once('common.php');
-require_once('header.inc.php');
 
 $error = false;
 loginUser();
@@ -11,7 +10,7 @@ loginUser();
 if(isLoggedIn()) {
     redirect("home.php");
 } else {
-    if(isset($_POST['email'])
+    if(isset($_POST['username'])
         || isset($_POST['password'])
     ) {
         $error = true;
@@ -27,14 +26,14 @@ if(isLoggedIn()) {
 <h1> Login Page </h1>
 <?php
 
-if($error) echo "<p>Error: Bad email or password</p>";
+if($error) echo "<p>Error: Bad username or password</p>";
 
 ?>
     <form method="post" action="login.php">
         <table>
         <tr>
-            <td>Email: </td>
-            <td><input type="text" name="email"></td>
+            <td>Username: </td>
+            <td><input type="text" name="username"></td>
         </tr>
         <tr>
             <td>Password: </td>
