@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.21-MariaDB, for Win32 (AMD64)
+-- MySQL dump 10.16  Distrib 10.1.19-MariaDB, for Win32 (AMD64)
 --
 -- Host: localhost    Database: localhost
 -- ------------------------------------------------------
--- Server version	10.1.21-MariaDB
+-- Server version	10.1.19-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -50,7 +50,7 @@ CREATE TABLE `credentials` (
   `UserID` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(64) DEFAULT NULL,
   `password` varchar(32) DEFAULT NULL,
-  `isAdmin` tinyint(1) NOT NULL DEFAULT '0',
+  `isAdmin` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`UserID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -115,6 +115,33 @@ LOCK TABLES `imprints` WRITE;
 INSERT INTO `imprints` VALUES ('Addison-Wesley',1),('Longman',2),('Pearson',3),('Prentice Hail',4),('Undecided',5);
 /*!40000 ALTER TABLE `imprints` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cost` decimal(18,2) NOT NULL,
+  `name` varchar(128) DEFAULT NULL,
+  `image` varchar(256) DEFAULT NULL,
+  `description` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `products`
+--
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,19.99,'Logitech M510 mouse','https://images-na.ssl-images-amazon.com/images/I/41GjoODyC0L._AC_US160_.jpg','Basic wireless mouse'),(2,6.95,'Ballcap Hat','https://images-na.ssl-images-amazon.com/images/I/41sy4v0RaoL._AC_US200_.jpg','Plain without logo.');
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -125,4 +152,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-20 20:10:45
+-- Dump completed on 2017-04-27 22:32:36
