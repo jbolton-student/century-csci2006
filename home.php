@@ -10,7 +10,8 @@ require_once('header.inc.php');
 <p>Hello user: <b>
 <?php
     echo getUsername();
+    redirect("product_search.php");
 ?>
 </b></p>
-<p>Will probably replace this file with a redirect to search_product.php</p>
+
 </body></html>

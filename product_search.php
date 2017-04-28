@@ -98,7 +98,7 @@ function addCartIcon($prodId) {
 				// in the previous, submitted state of the form
 				//
 				if ($_POST['orderTbl'] == 2) {
-					echo("<option value=\"2\" selected=\"selected\">Order by product price</option>");
+					echo("<option value=\"1\" selected=\"selected\">Order by product price</option>");
 				}
 				else {
 					echo("<option value=\"2\">Order by product price</option>");
@@ -112,7 +112,7 @@ function addCartIcon($prodId) {
 			}
 			else {												// display all records
 				$pdo = DBConnect();							// connect to the DB
-				listProducts($pdo, "", "1");
+				listProducts($pdo, "", $_POST['orderTbl']);
 			}
 
 			$pdo = null;										// free-up DB resources
