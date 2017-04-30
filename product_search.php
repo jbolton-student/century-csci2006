@@ -1,9 +1,9 @@
 <?php
-	session_start();
-
 	require_once('header.inc.php');
 	require_once('db.php');									// provides DB conn functions
+	require_once('common.php');									// provides DB conn functions
 
+	tryStartSession();
 
 	if(!isset($_POST['orderTbl'])) {
 		$_POST['orderTbl'] = 1;

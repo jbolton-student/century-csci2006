@@ -1,28 +1,18 @@
 <?php
-session_start();
 
-require('addToCart.php');
+require_once('addToCart.php');
+require_once('Cart.class.php');
 require_once('common.php');
+
+tryStartSession();
 //print_r($_SESSION['cart']);
 
 if(!isLoggedIn()) {
   redirect('login.php');
 }
 
-function countCart(){
-  if(isset($_SESSION['cart'])){
-    if(empty($_SESSION['cart'])){
-      echo '0';
-    }
-    else{
-      echo count($_SESSION['cart']);
-    }
-  }
-  else{
-    echo '0';
-  }
-  return;
-}
+initCart();
+$cart = getCart();
 
 ?>
 
@@ -41,7 +31,7 @@ function countCart(){
           </div>
 
           <p class="navbar-text navbar-left">View Your Cart Items: </p>
-          <a href="cart_show.php" class="btn btn-default navbar-btn navbar-left"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge"><?php countCart()?></span></a>
+          <a href="cart_show.php" class="btn btn-default navbar-btn navbar-left"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge"><?php echo $cart->count(); ?></span></a>
 
           <!-- <button type="button" style="margin-left:10px" class="btn btn-default navbar-btn navbar-right">Sign Out</button> -->
           <a href="logout.php" class="btn btn-default navbar-btn navbar-right">Sign Out</a>

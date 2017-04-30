@@ -1,5 +1,12 @@
 <?php
 
+function tryStartSession() {
+    if(!isset($_SESSION))  {
+        session_start();
+    }
+}
+
+
 function isLoggedIn() {
     // are you logged in?
     if(isset($_SESSION['valid_user'])) {

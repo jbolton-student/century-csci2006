@@ -3,7 +3,7 @@
 require_once('Products.class.php');
 require_once('Cart.class.php');
 
-session_start();
+tryStartSession();
 
 // handle_events();
 
