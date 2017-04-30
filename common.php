@@ -6,6 +6,14 @@ function tryStartSession() {
     }
 }
 
+function getPostOrGet($key) {
+    if(isset($_POST[$key]))
+        return $_POST[$key];
+    if(isset($_GET[$key]))
+        return $_GET[$key];
+
+    return null;
+}
 
 function isLoggedIn() {
     // are you logged in?

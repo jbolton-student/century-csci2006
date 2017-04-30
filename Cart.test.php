@@ -2,6 +2,7 @@
 
 require_once('Products.class.php');
 require_once('Cart.class.php');
+require_once('common.php');
 
 tryStartSession();
 
