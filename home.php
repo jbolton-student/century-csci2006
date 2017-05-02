@@ -21,6 +21,7 @@ $cart = getCart();
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
   </head>
   <body>
     <div>
@@ -31,7 +32,7 @@ $cart = getCart();
           </div>
 
           <p class="navbar-text navbar-left">View Your Cart Items: </p>
-          <a href="cart_show.php" class="btn btn-default navbar-btn navbar-left"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge"><?php echo $cart->count(); ?></span></a>
+          <a href="cart_show.php" class="btn btn-default navbar-btn navbar-left"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span id="cartButton" value="6" class="badge"><?php echo $cart->count(); ?></span></a>
 
           <!-- <button type="button" style="margin-left:10px" class="btn btn-default navbar-btn navbar-right">Sign Out</button> -->
           <a href="logout.php" class="btn btn-default navbar-btn navbar-right">Sign Out</a>
@@ -41,11 +42,10 @@ $cart = getCart();
     </div>
 
     <div class="container">
-      <h1>All Products</h1>
-      <hr/>
+      
       <?php require 'products.php'; ?>
     </div>
 
   </body>
-  <script type="text/javascript" src="script.js"></script>
+
 </html>

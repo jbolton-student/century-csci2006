@@ -1,8 +1,11 @@
 $(document).ready(function(){
-    $("#addToCart").click(function(e){
-      e.preventDefault();
-      $.post("addToCart.php", {'addToCart': e.target.value}, function(){
-        console.log('blahblahblah')
-      });
-    });
+  window.cartButton = function(){
+    var val = parseInt($('#cartButton').text()) + 1;
+    if(!isNaN(val)){
+      $('#cartButton').text(val);
+    }
+    else{
+      $('#cartButton').text('0');
+    }
+  }
 });

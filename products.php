@@ -30,7 +30,18 @@
                 echo("<tr><td>".$row[2]."</td><td>".$row[1]."</td><td>".$row[4]."</td>");
                 // use line below if DB links to external image; following line links to local file in /images/
                 echo("<td><img src=\"$row[3]\" alt=\"$row[4]\" height=\"150\" width=\"150\"></td>");
-                echo("<td><button id='addToCart' value='".$row[0]."' class='btn btn-success'>Add To Cart</button></td></tr>");
+                echo("<td><button id=\"$row[0]\" value='".$row[0]."' class='btn btn-success'>Add To Cart</button></td></tr>");
+                echo("
+                <script>
+                  $(document).ready(function(){
+                    $('#" . $row[0] . "').click(function(e){
+                      e.preventDefault();
+                      $.get('addToCart.php?add=" . $row[0] . "', function(){
+                        window.cartButton();
+                      });
+                    });
+                  });
+                </script>");
                 //echo("<img src=\"/project/images/$row[3]\" alt=\"$row[4]\" height=\"160\" width=\"160\"></td></tr>");
             }
             echo("</table>");
@@ -59,7 +70,18 @@
                 echo("<tr><td>".$row[2]."</td><td>".$row[1]."</td><td>".$row[4]."</td>");
                 // use line below if DB links to external image; following line links to local file in /images/
                 echo("<td><img src=\"$row[3]\" alt=\"$row[4]\" height=\"150\" width=\"150\"></td>");
-                echo("<td><button id='addToCart' value='".$row[0]."' class='btn btn-success'>Add To Cart</button></td></tr>");
+                echo("<td><button id=\"$row[0]\" value='".$row[0]."' class='btn btn-success'>Add To Cart</button></td></tr>");
+                echo("
+                <script>
+                  $(document).ready(function(){
+                    $('#" . $row[0] . "').click(function(e){
+                      e.preventDefault();
+                      $.get('addToCart.php?add=" . $row[0] . "', function(){
+                        window.cartButton();
+                      });
+                    });
+                  });
+                </script>");
                 //echo("<img src=\"/project/images/$row[3]\" alt=\"$row[4]\" height=\"160\" width=\"160\"></td></tr>");
             }
             echo("</table>");
@@ -67,6 +89,17 @@
     }
 
 ?>
+  <?php
+    if(!empty($_POST['searchStr'])){
+      echo '<h1>Products Matching Keyword: ' . $_POST['searchStr'] . '</h1>';
+    }
+    else{
+      echo '<h1>All Products</h1>';
+    }
+  ?>
+
+
+  <hr/>
 
   <form class="form-group" role="form" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
       <label>Enter A Product Keyword:</label>
