@@ -9,7 +9,6 @@ tryStartSession();
 // if non-existing, create instance.
 initCart();
 $cart = getCart();
-$count = $cart->count();
 
 handleSubmit();
 $_SESSION['Cart'] = $cart; // maybe redundant;
@@ -20,8 +19,9 @@ function handleSubmit() {
     // if ?add=id
     if(isset($_GET['add'])) {
         $id = $_GET['add'];
-        $cart->addItem(getProductByID($id));
-        $count= $count + 1;
+        $product = getProductByID($id);
+        if($product)
+            $cart->addItem($product);
     }
 
 }

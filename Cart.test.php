@@ -64,7 +64,9 @@ function handleSubmit() {
     // if ?add=id
     if(isset($_GET['add'])) {
         $id = $_GET['add'];
-        $cart->addItem(getProductByID($id));
+        $product = getProductByID($id);
+        if($product)
+            $cart->addItem($product);
     }
 
 }
