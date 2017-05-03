@@ -21,6 +21,7 @@ function getAllProducts() {
         return;
     }
 
+    echo("<script>var buttons=0;</script>");
     echo("<table class='table table-striped table-hover'><tr><th>Product Name</th><th>Price</th><th>Description</th><th>Image</th><th></th></tr>");
     echo("<caption> $productCount item(s) found: </caption>");
 
@@ -37,14 +38,15 @@ function getAllProducts() {
             // use line below if DB links to external image; following line links to local file in /images/
             echo("<td><img src=\"$image\" alt=\"$name\" height=\"150\" width=\"150\"></td>");
             // echo("<td><button class='btn btn-success' id='removeFromCart" .$id. "' value='".$id."' class='btn btn-success'>Remove From Cart</button></td></tr>");
-            echo("<td><button class='btn btn-success' id='$id' value='$id.' class='btn btn-success'>Remove From Cart</button></td></tr>");
+            echo("<td><button class='btn btn-success' id='removeButton$id' value='$id.' class='btn btn-success'>Remove From Cart</button></td></tr>");
             echo("
             <script>
+            buttons += 1;
+
               $(document).ready(function(){
-                $('btn-success').click(function(e){
-                    alert($(this).value);
+                $('removeButton' + buttons +).click(function(e){
                   e.preventDefault();
-                  $.get('removeFromCart.php?id=" . $id . "', function(){
+                  $.get('removeFromCart.php?id=' + $(this).val, function(){
                     window.cartButton();
                   });
                 });
