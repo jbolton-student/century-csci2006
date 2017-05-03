@@ -38,6 +38,7 @@
                       e.preventDefault();
                       $.get('addToCart.php?add=" . $row[0] . "', function(){
                         window.cartButton();
+                        $('#cartButton').fadeOut('slow').fadeIn('slow');
                       });
                     });
                   });
@@ -78,6 +79,7 @@
                       e.preventDefault();
                       $.get('addToCart.php?add=" . $row[0] . "', function(){
                         window.cartButton();
+                        $('#cartButton').fadeOut('slow').fadeIn('slow');
                       });
                     });
                   });
