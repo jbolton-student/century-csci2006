@@ -22,6 +22,9 @@ function getAllProducts() {
         return;
     }
 
+    echo("<script type='text/javascript' src='cart.js'></script>");
+    echo("<script type='text/javascript'>addListeners('$productCount');</script>");
+
     echo("<script>var buttons=0;</script>");
     echo("<table class='table table-striped table-hover'><tr><th>Product Name</th><th>Price</th><th>Description</th><th>Image</th><th></th></tr>");
     echo("<caption> $productCount item(s) found: </caption>");
@@ -41,23 +44,9 @@ function getAllProducts() {
             echo("<td><img src=\"$image\" alt=\"$name\" height=\"150\" width=\"150\"></td>");
             // echo("<td><button class='btn btn-success' id='removeFromCart" .$id. "' value='".$id."' class='btn btn-success'>Remove From Cart</button></td></tr>");
             echo("<td><button class='btn btn-success' id='removeButton$count' value='$id.' class='btn btn-success'>Remove From Cart</button></td></tr>");
-            echo("
-            <script>
-            buttons += 1;
-            console.log(buttons);
-
-              $(document).ready(function(){
-                $('#removeButton' + buttons).click(function(e){
-                  e.preventDefault();
-                  console.log('removeFromCart.php?id=' + $(this).val);
-                  $.get('removeFromCart.php?id=' + $(this).val, function(){
-                    window.cartButton();
-                  });
-                });
-              });
-            </script>");
     }
     echo("</table>");
+    echo("<script></script>");
 }
 
 ?>
@@ -79,7 +68,7 @@ function getAllProducts() {
           </div>
 
           <p class="navbar-text navbar-left">View Your Cart Items: </p>
-          <a href="cart_show.php" class="btn btn-default navbar-btn navbar-left"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge"><?php echo getCart()->count(); ?></span></a>
+          <a href="cart_show.php" class="btn btn-default navbar-btn navbar-left"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span id="cartButton" class="badge"><?php echo getCart()->count(); ?></span></a>
 
           <!-- <button type="button" style="margin-left:10px" class="btn btn-default navbar-btn navbar-right">Sign Out</button> -->
           <a href="logout.php" class="btn btn-default navbar-btn navbar-right">Sign Out</a>

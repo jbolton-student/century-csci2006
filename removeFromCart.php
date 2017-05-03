@@ -21,6 +21,8 @@ function handleSubmit() {
 
     if($id != null)
         $cart->removeItem($id);
+
+    echo $cart->count();
 }
 
 
