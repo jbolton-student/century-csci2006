@@ -23,7 +23,7 @@ function getAllProducts() {
 
     echo("<table class='table table-striped table-hover'><tr><th>Product Name</th><th>Price</th><th>Description</th><th>Image</th><th></th></tr>");
     echo("<caption> $productCount item(s) found: </caption>");
-    
+
     foreach($cart->getItems() as $item) {
         // echo("I: " . $item->getName());
         $id = $item->getId();
@@ -36,8 +36,20 @@ function getAllProducts() {
         echo("<tr><td>".$name."</td><td>".$cost."</td><td>".$description."</td>");
             // use line below if DB links to external image; following line links to local file in /images/
             echo("<td><img src=\"$image\" alt=\"$name\" height=\"150\" width=\"150\"></td>");
-            echo("<td><button id='removeFromCart' value='".$id."' class='btn btn-success'>Remove From Cart</button></td></tr>");
-            //echo("<img src=\"/project/images/$row[3]\" alt=\"$row[4]\" height=\"160\" width=\"160\"></td></tr>");
+            // echo("<td><button class='btn btn-success' id='removeFromCart" .$id. "' value='".$id."' class='btn btn-success'>Remove From Cart</button></td></tr>");
+            echo("<td><button class='btn btn-success' id='$id' value='$id.' class='btn btn-success'>Remove From Cart</button></td></tr>");
+            echo("
+            <script>
+              $(document).ready(function(){
+                $('btn-success').click(function(e){
+                    alert($(this).value);
+                  e.preventDefault();
+                  $.get('removeFromCart.php?id=" . $id . "', function(){
+                    window.cartButton();
+                  });
+                });
+              });
+            </script>");
     }
     echo("</table>");
 }
@@ -50,6 +62,7 @@ function getAllProducts() {
     <title>show cart</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
   </head>
   <body>
     <div>
@@ -75,5 +88,4 @@ function getAllProducts() {
     </div>
 
   </body>
-  <script type="text/javascript" src="script.js"></script>
 </html>
