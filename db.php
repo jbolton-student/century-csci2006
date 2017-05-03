@@ -54,6 +54,42 @@ function loginUser() {
     }
 }
 
+function registerUser() {
+
+  if(isset($_POST['registerEmail']) && isset($_POST['registerPassword']) && isset($_POST['registerPassword'])){
+    $username = $_POST['registerEmail'];
+    $password = $_POST['registerPassword'];
+    $confirm = $_POST['confirmPassword'];
+    if($username == "" || $password == "" || $confirm == ""){
+      return "Failed To Register: Please Try Again";
+    }
+    if($password != $confirm){
+      return "Failed To Register: Please Try Again";
+    }
+
+    $pdo = DBConnect();
+
+    $sql = "select * from credentials where email=:email";
+    $statement = $pdo->prepare($sql);
+    $statement->bindValue(":email", $username);
+    $statement->execute();
+    if($statement->rowCount() > 0) {
+        return "Failed To Register: Please Try Again";
+    }
+
+    $sql = "insert into credentials(email, password) values (:email, :pass)";
+    $statement = $pdo->prepare($sql);
+    $statement->bindValue(":email", $username);
+    $statement->bindValue(":pass", $password);
+    $statement->execute();
+
+    if($statement->rowCount() > 0) {
+        return "Successful Registration: You Can Now Login";
+    }
+  }
+  return "Failed To Register: Please Try Again";
+}
+
 // To display categories for product_update.php
 function getCategories(){
   $pdo = DBConnect();
