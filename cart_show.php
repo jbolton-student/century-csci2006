@@ -15,6 +15,7 @@ initCart();
 function getAllProducts() {
     $cart = getCart();
     $productCount = $cart->count();
+    $count = 0;
 
     if($productCount == 0) {
         echo("<h3>Empty Cart</h3>");
@@ -32,20 +33,23 @@ function getAllProducts() {
         $cost = $item->getCost();
         $description = $item->getDescription();
         $image = $item->getImage();
+        $count += 1;
 
 
         echo("<tr><td>".$name."</td><td>".$cost."</td><td>".$description."</td>");
             // use line below if DB links to external image; following line links to local file in /images/
             echo("<td><img src=\"$image\" alt=\"$name\" height=\"150\" width=\"150\"></td>");
             // echo("<td><button class='btn btn-success' id='removeFromCart" .$id. "' value='".$id."' class='btn btn-success'>Remove From Cart</button></td></tr>");
-            echo("<td><button class='btn btn-success' id='removeButton$id' value='$id.' class='btn btn-success'>Remove From Cart</button></td></tr>");
+            echo("<td><button class='btn btn-success' id='removeButton$count' value='$id.' class='btn btn-success'>Remove From Cart</button></td></tr>");
             echo("
             <script>
             buttons += 1;
+            console.log(buttons);
 
               $(document).ready(function(){
-                $('removeButton' + buttons +).click(function(e){
+                $('#removeButton' + buttons).click(function(e){
                   e.preventDefault();
+                  console.log('removeFromCart.php?id=' + $(this).val);
                   $.get('removeFromCart.php?id=' + $(this).val, function(){
                     window.cartButton();
                   });
