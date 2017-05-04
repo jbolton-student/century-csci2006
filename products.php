@@ -97,7 +97,6 @@
           <option value="cost asc" <?php echo isSelected('cost asc') ?> >Cost Cheapest</option>
           <option value="cost desc" <?php echo isSelected('cost desc') ?> >Cost Most Expensive</option>
         </select>
-
         <span class="input-group-btn">
           <button class="btn btn-primary" type="submit">Search</button>
         </span>
