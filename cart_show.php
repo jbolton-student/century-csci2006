@@ -22,12 +22,14 @@ function getAllProducts() {
         return;
     }
 
+    $totalCost = $cart->getSubTotal();
+
     echo("<script type='text/javascript' src='cart.js'></script>");
     echo("<script type='text/javascript'>addListeners('$productCount');</script>");
 
     echo("<script>var buttons=0;</script>");
     echo("<table class='table table-striped table-hover'><tr><th>Product Name</th><th>Price</th><th>Description</th><th>Image</th><th></th></tr>");
-    echo("<caption> $productCount item(s) found: </caption>");
+    echo("<caption>$productCount item(s) found:</br><b>Total: \$$totalCost</b></caption>");
 
     foreach($cart->getItems() as $item) {
         // echo("I: " . $item->getName());
