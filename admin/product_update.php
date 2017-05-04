@@ -10,13 +10,13 @@
   $id=null;
 
   // No admin session redirect
-  if(!isLoggedIn()){
-      redirect("../login.php");
-  }
+if(!isLoggedIn()){
+    redirect("../login.php");
+}
 
-  if(!isAdmin()) {
-    redirect("home.php");
-  }
+if(!isAdmin()) {
+  redirect("../home.php");
+}
 
   if(isset($_POST['ID'])){
     if(!is_null($_POST['ID'])){
