@@ -109,13 +109,13 @@ function addProduct($name, $cost, $description, $image, $category){
 
     $pdo = DBConnect();
 
-    $sql = "insert into products(name, cost, description, image, category) values (:name, :cost, :description, :image, :category)";
+    $sql = "insert into products(name, cost, description, image) values (:name, :cost, :description, :image)";
     $statement = $pdo->prepare($sql);
     $statement->bindValue(":name", $name);
     $statement->bindValue(":cost", $cost);
     $statement->bindValue(":description", $description);
     $statement->bindValue(":image", $image);
-    $statement->bindValue(":category", $category);
+    //$statement->bindValue(":category", $category);
 
     $statement->execute();
 
@@ -135,13 +135,13 @@ function updateProduct($id, $name, $cost, $description, $image, $category){
   print_r("in updateProduct");
   $pdo = DBConnect();
 
-  $sql = "update productTest set name=:name, cost=:cost, description=:description, image=:image, category=:category where ID=:id";
+  $sql = "update productTest set name=:name, cost=:cost, description=:description, image=:image where ID=:id";
   $statement = $pdo->prepare($sql);
   $statement->bindValue(":name", $name);
   $statement->bindValue(":cost", $cost);
   $statement->bindValue(":description", $description);
   $statement->bindValue(":image", $image);
-  $statement->bindValue(":category", $category);
+  //$statement->bindValue(":category", $category);
   $statement->bindValue(":id", $id);
 
   $statement->execute();
