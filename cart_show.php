@@ -23,6 +23,7 @@ function getAllProducts() {
     }
 
     $totalCost = $cart->getSubTotal();
+    echo "<a href='purchase.php' class='btn btn-success pull-right'>Purchase Items</a>";
 
     echo("<script type='text/javascript' src='cart.js'></script>");
     echo("<script type='text/javascript'>addListeners('$productCount');</script>");
