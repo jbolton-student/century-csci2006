@@ -33,26 +33,26 @@
     <div id="addForm" class="container" style="display:none;">
       <h2>Add New Item</h2>
       <form class="form-group">
-        <lable>Item Name</lable>
+        <label>Item Name</label>
         <input class="form-control" id="name" type="text" name="name"/>
-        <lable>Description</lable>
+        <label>Description</label>
         <input class="form-control" id="description" type="text" name="description" />
-        <lable>Price</lable>
+        <label>Price</label>
         <input class="form-control" id="price" type="text" name="cost" />
-        <lable>Image</lable>
+        <label>Image</label>
         <input class="form-control" id="image" type="text" name="image" id="fileToUpload" />
-        <lable>Category</lable>
-        <select class="form-control" id="category" name="category" >
+        <!-- <label>Category</label>
+        <select class="form-control" id="category" name="category" > -->
             <?php
-              $categories = getCategories();
-              // Dynamically displaying categories from DB
-              if(($categories != null) && ($categories->rowCount() > 0)){
-                while($data = $categories->fetch()){
-                  echo "<option>" . $data['type'] . "</option>";
-                }
-              }
+              // $categories = getCategories();
+              // // Dynamically displaying categories from DB
+              // if(($categories != null) && ($categories->rowCount() > 0)){
+              //   while($data = $categories->fetch()){
+              //     echo "<option>" . $data['type'] . "</option>";
+              //   }
+              // }
              ?>
-        </select>
+        <!-- </select> -->
         <div class="btn-group btn-group-justified">
           <a id="addBack" class="btn btn-danger">Back</a>
           <a id="saveItem" class="btn btn-primary">Add Item</a>
@@ -63,15 +63,15 @@
     <div id="editForm" class="container" style="display:none;">
       <h2 id='editH2'></h2>
       <form class="form-group">
-        <lable>Item Name</lable>
+        <label>Item Name</label>
         <input class="form-control" id="editName" type="text" name="name"/>
-        <lable>Description</lable>
+        <label>Description</label>
         <input class="form-control" id="editDescription" type="text" name="description" />
-        <lable>Price</lable>
+        <label>Price</label>
         <input class="form-control" id="editPrice" type="text" name="cost" />
-        <lable>Image</lable>
+        <label>Image</label>
         <input class="form-control" id="editImage" type="text" name="image" id="fileToUpload" />
-        <lable>Category</lable>
+        <label>Category</label>
         <select class="form-control" id="editCategory" name="category" >
             <?php
               $categories = getCategories();
