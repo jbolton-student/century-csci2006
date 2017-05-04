@@ -50,7 +50,7 @@
         <label>Price</label>
         <input class="form-control" id="price" type="text" name="cost" />
         <label>Image</label>
-        <input class="form-control" id="image" type="text" name="image" id="fileToUpload" />
+        <input class="form-control" id="image" type="text" name="image" />
         <!-- <label>Category</label>
         <select class="form-control" id="category" name="category" > -->
             <?php
@@ -63,6 +63,7 @@
               // }
              ?>
         <!-- </select> -->
+        <br/>
         <div class="btn-group btn-group-justified">
           <a id="addBack" class="btn btn-danger">Back</a>
           <a id="saveItem" class="btn btn-primary">Add Item</a>
@@ -80,25 +81,26 @@
         <label>Price</label>
         <input class="form-control" id="editPrice" type="text" name="cost" />
         <label>Image</label>
-        <input class="form-control" id="editImage" type="text" name="image" id="fileToUpload" />
-        <label>Category</label>
-        <select class="form-control" id="editCategory" name="category" >
+        <input class="form-control" id="editImage" type="text" name="image" />
+        <!-- <label>Category</label> -->
+        <!-- <select class="form-control" id="editCategory" name="category" > -->
             <?php
-              $categories = getCategories();
-              // Dynamically displaying categories from DB
-              if(($categories != null) && ($categories->rowCount() > 0)){
-                while($data = $categories->fetch()){
-                  if($data['type'] === $category){
-                    echo "<option selected>" . $data['type'] . "</option>";
-                  }
-                  else{
-                    echo "<option>" . $data['type'] . "</option>";
-                  }
-                }
-              }
+              // $categories = getCategories();
+              // // Dynamically displaying categories from DB
+              // if(($categories != null) && ($categories->rowCount() > 0)){
+              //   while($data = $categories->fetch()){
+              //     if($data['type'] === $category){
+              //       echo "<option selected>" . $data['type'] . "</option>";
+              //     }
+              //     else{
+              //       echo "<option>" . $data['type'] . "</option>";
+              //     }
+              //   }
+              // }
              ?>
-        </select>
+        <!-- </select> -->
         <input id="editId" type="hidden" name="ID" value="<?php echo $id; ?>" />
+        <br/>
         <div class="btn-group btn-group-justified">
           <a id="editBack" class="btn btn-danger">Back</a>
           <a id="saveEdit" class="btn btn-primary">Add Item</a>

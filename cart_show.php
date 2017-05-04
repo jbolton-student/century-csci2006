@@ -43,7 +43,7 @@ function getAllProducts() {
             // use line below if DB links to external image; following line links to local file in /images/
             echo("<td><img src=\"$image\" alt=\"$name\" height=\"150\" width=\"150\"></td>");
             // echo("<td><button class='btn btn-success' id='removeFromCart" .$id. "' value='".$id."' class='btn btn-success'>Remove From Cart</button></td></tr>");
-            echo("<td><button class='btn btn-success' id='removeButton$count' value='$id.' class='btn btn-success'>Remove From Cart</button></td></tr>");
+            echo("<td><button class='btn btn-danger' id='removeButton$count' value='$id.' class='btn btn-success'>Remove From Cart</button></td></tr>");
     }
     echo("</table>");
     echo("<script></script>");
@@ -79,7 +79,7 @@ function getAllProducts() {
     </div>
 
     <div class="container">
-      <h1>All Products</h1>
+      <h1>Your Cart</h1>
       <hr/><?php getAllProducts(); ?>
     </div>
 
