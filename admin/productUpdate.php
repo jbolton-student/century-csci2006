@@ -15,7 +15,7 @@
       <nav class="navbar navbar-default">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand" href="home.php">The Shopping Zone</a>
+            <a class="navbar-brand" href="../home.php">The Shopping Zone</a>
           </div>
 
           <!-- <button type="button" style="margin-left:10px" class="btn btn-default navbar-btn navbar-right">Sign Out</button> -->
