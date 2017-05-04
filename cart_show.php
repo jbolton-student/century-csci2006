@@ -72,6 +72,7 @@ function getAllProducts() {
 
           <!-- <button type="button" style="margin-left:10px" class="btn btn-default navbar-btn navbar-right">Sign Out</button> -->
           <a href="logout.php" class="btn btn-default navbar-btn navbar-right">Sign Out</a>
+          <a href="admin/productUpdate.php" class="btn btn-default navbar-btn navbar-right">Admin</a>
           <p class="navbar-text navbar-right">Signed in as <?php echo getUsername();?>: </p>
         </div>
       </nav>
