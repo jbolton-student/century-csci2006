@@ -80,6 +80,7 @@ function getAllProducts() {
 
     <div class="container">
       <h1>Your Cart</h1>
+      <a href="purchase.php" class="btn btn-success pull-right">Purchase Items</a>
       <hr/><?php getAllProducts(); ?>
     </div>
 
