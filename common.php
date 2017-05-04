@@ -35,7 +35,12 @@ function getUsername() {
 
 function isAdmin() {
     if(isset($_SESSION['isAdmin'])) {
+      if($_SESSION['isAdmin'] == 1){
         return true;
+      }
+      else{
+        return false;
+      }
     } else {
         return false;
     }

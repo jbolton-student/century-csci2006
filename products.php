@@ -89,18 +89,16 @@
       <label>Enter A Product Keyword:</label>
       <div class="input-group">
         <input class="form-control" type="text" placeholder="Search Products..." name="searchStr" value="<?php echo getSearchTerm(); ?>"/>
-
-
-        <label for="sortOrder">Sort Order </label>
-        <select name="sortOrder" id="sortOrder">
-          <option value="name" <?php echo isSelected('name') ?> >Name</option>
-          <option value="cost asc" <?php echo isSelected('cost asc') ?> >Cost Cheapest</option>
-          <option value="cost desc" <?php echo isSelected('cost desc') ?> >Cost Most Expensive</option>
-        </select>
         <span class="input-group-btn">
           <button class="btn btn-primary" type="submit">Search</button>
         </span>
       </div>
+      <label for="sortOrder">Sort Order </label>
+      <select class="form-control" name="sortOrder" id="sortOrder">
+        <option value="name" <?php echo isSelected('name') ?> >Name</option>
+        <option value="cost asc" <?php echo isSelected('cost asc') ?> >Cost Cheapest</option>
+        <option value="cost desc" <?php echo isSelected('cost desc') ?> >Cost Most Expensive</option>
+      </select>
       <br />
       <?php
           if ( ! empty($_POST["searchStr"]) ) {

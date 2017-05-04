@@ -1,6 +1,16 @@
 <?php
   session_start();
-  require('./../common.php')
+  require_once('../common.php');
+  require_once('../db.php');
+
+  // No admin session redirect
+  if(!isLoggedIn()){
+      redirect("../login.php");
+  }
+
+  if(!isAdmin()) {
+    redirect("../home.php");
+  }
 ?>
 
 <html>
@@ -19,7 +29,7 @@
           </div>
 
           <!-- <button type="button" style="margin-left:10px" class="btn btn-default navbar-btn navbar-right">Sign Out</button> -->
-          <a href="logout.php" class="btn btn-default navbar-btn navbar-right">Sign Out</a>
+          <a href="../logout.php" class="btn btn-default navbar-btn navbar-right">Sign Out</a>
           <a href="productUpdate.php" class="btn btn-default navbar-btn navbar-right">Admin</a>
           <p class="navbar-text navbar-right">Signed in as <?php echo getUsername();?>: </p>
         </div>
