@@ -1,16 +1,18 @@
 <?php
 	// purchase.php
-	
+
 	require_once('header.inc.php');
 	require_once('db.php');
 	require_once('common.php');
-	require_once('cart.class.php');
+	require_once('Cart.class.php');
+	require_once('Products.class.php');
 
 	tryStartSession();
-	
-	
+
+	initCart();
 	$cart = getCart();
-   $productCount = $cart->count();
+
+   	$productCount = $cart->count();
 	?>
 <html>
 <head>
@@ -38,7 +40,7 @@
 					<!-- clicking the button will "purchase the items" and clear the shopping cart -->
 				</form>
 	<?php
-		    }	
+		    }
 		 }
 	?>
 

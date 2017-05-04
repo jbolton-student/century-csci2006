@@ -72,6 +72,11 @@ class Cart implements Countable {
         // return subtotal of all items in the cart
         public function getSubtotal() {
             $subtotal = 0.0;
+
+            if($this->count() <= 0) {
+                return 0.0;
+                echo "yeah";
+            }
             foreach($this->items as $item) {
                 $subtotal += $item->getCost();
             }
