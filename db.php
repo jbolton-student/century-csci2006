@@ -102,8 +102,8 @@ function getCategories(){
   return $statement;
 }
 // To add products to the DB (taken from products.text.php)
-function addProduct($name, $cost, $description, $image, $category){
-    if($name == "" || $cost == "" || $image == "" || $description == "" || $category == ""){
+function addProduct($name, $cost, $description, $image){
+    if($name == "" || $cost == "" || $image == "" || $description == ""){
         return;
     }
 
@@ -124,18 +124,18 @@ function addProduct($name, $cost, $description, $image, $category){
     $statement->execute();
     if($statement->rowCount() > 0){
       $row = $statement->fetch();
-      return $row['ID'];
+      return $row;
     }
 }
-function updateProduct($id, $name, $cost, $description, $image, $category){
-  if($id =="" || $name == "" || $cost == "" || $image == "" || $description == "" || $category == ""){
+function updateProduct($id, $name, $cost, $description, $image){
+  if($id =="" || $name == "" || $cost == "" || $image == "" || $description == ""){
     //print_r("I returned");
       return;
   }
-  print_r("in updateProduct");
+  //print_r("in updateProduct");
   $pdo = DBConnect();
 
-  $sql = "update productTest set name=:name, cost=:cost, description=:description, image=:image where ID=:id";
+  $sql = "update products set name=:name, cost=:cost, description=:description, image=:image where ID=:id";
   $statement = $pdo->prepare($sql);
   $statement->bindValue(":name", $name);
   $statement->bindValue(":cost", $cost);
@@ -146,8 +146,17 @@ function updateProduct($id, $name, $cost, $description, $image, $category){
 
   $statement->execute();
 
-  return $id;
-}
+  $x = "select * from products where id=:id";
+  $stmt = $pdo->prepare($x);
+  $stmt->bindValue(":id", $id);
 
+  $stmt->execute();
+
+  if($stmt->rowCount() > 0){
+    $row = $stmt->fetch();
+    return $row;
+  }
+
+}
 
 ?>

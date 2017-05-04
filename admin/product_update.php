@@ -32,85 +32,67 @@
       $category= $_POST['category'];
     }
 ?>
+
 <html>
-<body>
-  <h1>
-    <?php
-      if(isset($_POST['ID']) && $_POST['ID'] != ""){
-          echo "Edit Product: $name";
-      }
-      else{
-          echo "Add New Product: ";
-      }
-    ?>
-  </h1>
-  <p>user: <b>
-    <?php
-        echo getUsername();
-    ?>
-  </b></p>
-  <!-- <p>Form here: for all fields of table products.</p> -->
-  <form role="form" method="POST" action="product_updateHelper.php" name="editProduct">
-    <lable>Item Name: <br></lable>
-    <input type="text" name="name" value="<?php echo $name; ?>"/>
-    <br>
-    <lable>Description: <br></lable>
-    <input type="text" name="description" value="<?php echo $description; ?>"/>
-    <br>
-    <lable>Price: <br></lable>
-    <input type="text" name="cost" value="<?php echo $cost; ?>"/>
-    <br>
-    <lable>Image: <br></lable>
-    <input type="text" name="image" id="fileToUpload" value="<?php echo $image; ?>"/>
-    <br>
-    <lable>Category: <br></lable>
-    <select name="category" id="select">
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="productUpdate.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>
         <?php
-          $categories = getCategories();
-          // Dynamically displaying categories from DB
-          if(($categories != null) && ($categories->rowCount() > 0)){
-            while($data = $categories->fetch()){
-              if($data['type'] === $category){
-                echo "<option selected>" . $data['type'] . "</option>";
-              }
-              else{
-                echo "<option>" . $data['type'] . "</option>";
-              }
-            }
-            echo "<script>document.getElementById('select').value=". $category . "</script>";
+          if(isset($_POST['ID']) && $_POST['ID'] != ""){
+              echo "Edit Product: $name";
           }
-         ?>
-    </select>
-    <input type="hidden" name="ID" value="<?php echo $id; ?>" />
-    <input type="submit" value="submit"/>
-  </form>
+          else{
+              echo "Add New Product: ";
+          }
+        ?>
+      </h1>
+      <p>user: <b>
+        <?php
+            echo getUsername();
+        ?>
+      </b></p>
+      <!-- <p>Form here: for all fields of table products.</p> -->
+      <form>
+        <lable>Item Name: <br></lable>
+        <input id="name" type="text" name="name"/>
+        <br>
+        <lable>Description: <br></lable>
+        <input type="text" name="description" value="<?php echo $description; ?>"/>
+        <br>
+        <lable>Price: <br></lable>
+        <input type="text" name="cost" value="<?php echo $cost; ?>"/>
+        <br>
+        <lable>Image: <br></lable>
+        <input type="text" name="image" id="fileToUpload" value="<?php echo $image; ?>"/>
+        <br>
+        <lable>Category: <br></lable>
+        <select name="category" id="select">
+            <?php
+              $categories = getCategories();
+              // Dynamically displaying categories from DB
+              if(($categories != null) && ($categories->rowCount() > 0)){
+                while($data = $categories->fetch()){
+                  if($data['type'] === $category){
+                    echo "<option selected>" . $data['type'] . "</option>";
+                  }
+                  else{
+                    echo "<option>" . $data['type'] . "</option>";
+                  }
+                }
+                //echo "<script>document.getElementById('select').value=". $category . "</script>";
+              }
+             ?>
+        </select>
+        <input type="hidden" name="ID" value="<?php echo $id; ?>" />
 
-<!-- psuedo code:
+      </form>
+      <button id="productUpdate">Submit</button>
+    </div>
 
-update db.php: loginUser()
-    update so if table has isAdmin set, then:
-        $_SESSION['isAdmin'] = true;
-
-
-db.php: isAdmin()
-    test if $_SESSION['isAdmin'] == true;
-
-
-//on load
-if(! isAdmin()) then:
-    redirect("../home.php");
-
-// on submit
-if $_POST['id'] exists then:
-    display form
-    populate form values from item with that ID
-else:
-    if all form values are not-empty:
-        create new table entry
-    else:
-        print: error, empty values. -->
-
-
-
-</body>
+  </body>
 </html>
